@@ -1,0 +1,302 @@
+:root {
+  color-scheme: dark;
+  --red: #e50922;
+  --deep-red: #8c0013;
+  --white: #fff7f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  color: var(--white);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.experience {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 560px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(190, 0, 24, 0.12), transparent 27%),
+    radial-gradient(circle at 50% 76%, rgba(255, 245, 245, 0.035), transparent 19%),
+    #000;
+  isolation: isolate;
+}
+
+body:not(.is-started) .rose-art,
+body:not(.is-started) .rose-fill,
+body:not(.is-started) .rose-line,
+body:not(.is-started) .wish,
+body:not(.is-started) .experience::after {
+  animation-play-state: paused;
+}
+
+.experience::before,
+.experience::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.experience::before {
+  background:
+    radial-gradient(circle at 50% 48%, transparent 0 33%, rgba(0, 0, 0, 0.42) 61%, #000 100%),
+    linear-gradient(180deg, #000 0%, transparent 20%, transparent 68%, #000 100%);
+}
+
+.experience::after {
+  opacity: .22;
+  background-image:
+    radial-gradient(circle, rgba(255, 237, 237, .68) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(229, 9, 34, .3) 0 1px, transparent 1.2px);
+  background-position: 12vw 16vh, 64vw 28vh;
+  background-size: 220px 220px, 310px 310px;
+  animation: stars 24s linear infinite;
+}
+
+.rose-wrap {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  z-index: 2;
+  width: min(72vmin, 520px);
+  transform: translate(-50%, -50%);
+  filter:
+    drop-shadow(0 0 10px rgba(229, 9, 34, .3))
+    drop-shadow(0 0 25px rgba(120, 0, 18, .22));
+}
+
+.rose {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.rose-art {
+  transform-origin: 50% 52%;
+  animation: floatRose 9s ease-in-out infinite;
+}
+
+.rose-fill {
+  fill: url("#petalFill");
+  opacity: 0;
+  animation: fillRose 8s ease 14s forwards;
+}
+
+.rose-line {
+  fill: none;
+  stroke: url("#roseStroke");
+  stroke-width: 2.35;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-miterlimit: 6;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  animation: drawRose 24s cubic-bezier(.42, 0, .16, 1) forwards;
+}
+
+.wish {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(74px, 11vh, 126px);
+  z-index: 3;
+  width: min(92vw, 900px);
+  text-align: center;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: revealWish 4.8s cubic-bezier(.19, 1, .22, 1) 11.5s forwards;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(42px, 6.6vw, 88px);
+  font-weight: 500;
+  line-height: .96;
+  letter-spacing: 0;
+  text-wrap: balance;
+  text-shadow:
+    0 0 16px rgba(255, 236, 236, .28),
+    0 0 38px rgba(229, 9, 34, .34),
+    0 14px 28px rgba(0, 0, 0, .75);
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
+}
+
+.start-button,
+.mute-button {
+  position: absolute;
+  z-index: 4;
+  border: 1px solid rgba(255, 245, 245, .18);
+  color: var(--white);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, .46);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: opacity .7s ease, transform .7s ease, border-color .25s ease, background .25s ease;
+}
+
+.start-button {
+  left: 50%;
+  bottom: clamp(42px, 8vh, 82px);
+  min-width: 190px;
+  padding: 15px 22px;
+  border-radius: 999px;
+  font-size: 12px;
+  transform: translateX(-50%);
+  box-shadow:
+    0 0 22px rgba(229, 9, 34, .16),
+    inset 0 0 18px rgba(229, 9, 34, .06);
+}
+
+.start-button:hover {
+  border-color: rgba(255, 82, 94, .58);
+  background: rgba(48, 0, 7, .5);
+}
+
+.is-started .start-button {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+}
+
+.mute-button {
+  right: clamp(16px, 3vw, 28px);
+  top: clamp(16px, 3vw, 28px);
+  padding: 10px 13px;
+  border-radius: 999px;
+  font-size: 10px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.is-started .mute-button {
+  opacity: .46;
+  pointer-events: auto;
+}
+
+.mute-button:hover {
+  opacity: 1;
+  border-color: rgba(255, 245, 245, .34);
+}
+
+.sound-off,
+.is-muted .sound-on {
+  display: none;
+}
+
+.is-muted .sound-off {
+  display: inline;
+}
+
+@keyframes drawRose {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillRose {
+  0% {
+    opacity: 0;
+    filter: saturate(.7) brightness(.7);
+  }
+  100% {
+    opacity: .54;
+    filter: saturate(1.1) brightness(.92);
+  }
+}
+
+@keyframes revealWish {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate(-50%, 18px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes floatRose {
+  0%, 100% {
+    transform: translateY(0) rotate(-1deg) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg) scale(1.018);
+  }
+}
+
+@keyframes stars {
+  to {
+    background-position: 12vw 12vh, 64vw 22vh;
+  }
+}
+
+@media (max-width: 720px) {
+  .experience {
+    min-height: 100svh;
+  }
+
+  .rose-wrap {
+    top: 39%;
+    width: min(118vmin, 520px);
+    transform: translate(-50%, -50%);
+  }
+
+  .wish {
+    bottom: clamp(82px, 13svh, 118px);
+  }
+
+  h1 {
+    font-size: clamp(36px, 11.6vw, 52px);
+    line-height: .98;
+  }
+
+  .mute-button {
+    top: 12px;
+    right: 12px;
+    padding: 8px 10px;
+    font-size: 9px;
+    letter-spacing: .12em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rose-art,
+  .experience::after {
+    animation: none;
+  }
+
+  .rose-line {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .rose-fill,
+  .wish {
+    opacity: 1;
+    animation: none;
+  }
+}
