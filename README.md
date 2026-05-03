@@ -28,6 +28,7 @@ That gives `420` possible combinations when color, message, and drawing style ar
 - `index.html` - Page structure, rose SVG, birthday text, audio element
 - `styles.css` - Layout, colors, glow effects, animation timing, responsive design
 - `script.js` - Randomization, tap-to-start behavior, music controls
+- `rose.ico` - Browser tab favicon
 - `Roses_Background_Music.mp3` - Original music file
 - `Roses_Background_Music_cropped.mp3` - Smaller cropped music file used by the site
 
