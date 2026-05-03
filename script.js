@@ -6,6 +6,10 @@ const glowBlur = document.querySelector("#redGlow feGaussianBlur");
 
 let isMuted = false;
 
+const firstLoadKey = "hasSeenFirstRose";
+const bestFirstPalette = "crimson-velvet";
+const bestFirstDrawStyle = "single-line";
+
 const messages = [
   "Hope your day comes with cake and zero stress.",
   "A tiny rose, because confetti felt too loud.",
@@ -293,10 +297,24 @@ function pickDifferent(items, storageKey, getId = (item) => item) {
   return selected;
 }
 
+function findByName(items, name) {
+  return items.find((item) => item.name === name);
+}
+
 function applyVariation() {
-  const palette = pickDifferent(palettes, "lastPalette", (paletteItem) => paletteItem.name);
-  const drawStyle = pickRandom(drawStyles);
+  const isFirstSessionLoad = sessionStorage.getItem(firstLoadKey) !== "true";
+  const palette = isFirstSessionLoad
+    ? findByName(palettes, bestFirstPalette) || palettes[0]
+    : pickDifferent(palettes, "lastPalette", (paletteItem) => paletteItem.name);
+  const drawStyle = isFirstSessionLoad
+    ? findByName(drawStyles, bestFirstDrawStyle) || drawStyles[0]
+    : pickRandom(drawStyles);
   const message = pickDifferent(messages, "lastMessage");
+
+  if (isFirstSessionLoad) {
+    sessionStorage.setItem(firstLoadKey, "true");
+    sessionStorage.setItem("lastPalette", palette.name);
+  }
 
   document.body.dataset.palette = palette.name;
   document.body.dataset.draw = drawStyle.name;
