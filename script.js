@@ -308,12 +308,13 @@ function applyVariation() {
     : pickDifferent(palettes, "lastPalette", (paletteItem) => paletteItem.name);
   const drawStyle = isFirstSessionLoad
     ? findByName(drawStyles, bestFirstDrawStyle) || drawStyles[0]
-    : pickRandom(drawStyles);
+    : pickDifferent(drawStyles, "lastDrawStyle", (styleItem) => styleItem.name);
   const message = pickDifferent(messages, "lastMessage");
 
   if (isFirstSessionLoad) {
     sessionStorage.setItem(firstLoadKey, "true");
     sessionStorage.setItem("lastPalette", palette.name);
+    sessionStorage.setItem("lastDrawStyle", drawStyle.name);
   }
 
   document.body.dataset.palette = palette.name;
