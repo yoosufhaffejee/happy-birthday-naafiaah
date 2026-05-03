@@ -1,6 +1,6 @@
 # Rose Birthday Website
 
-A static birthday page built for GitHub Pages. It opens on an OLED black background, lets the visitor tap to bloom, plays a short cropped music loop, and reveals a rose-style line animation with a birthday message for Naafiaah.
+A static birthday page built for GitHub Pages. It opens on an OLED black background, lets the visitor tap to bloom, plays a short cropped music loop, and reveals a rose-style line animation with a birthday message.
 
 ## Features
 
