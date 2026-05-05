@@ -1,5 +1,6 @@
 :root {
   color-scheme: dark;
+  --app-height: 100dvh;
   --red: #e50922;
   --deep-red: #8c0013;
   --white: #fff7f7;
@@ -48,6 +49,7 @@
 html,
 body {
   width: 100%;
+  height: var(--app-height);
   min-height: 100%;
   margin: 0;
   overflow: hidden;
@@ -62,8 +64,8 @@ body {
 .experience {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  min-height: 560px;
+  height: var(--app-height);
+  min-height: min(560px, var(--app-height));
   background:
     radial-gradient(circle at 50% 35%, var(--bg-red), transparent 27%),
     radial-gradient(circle at 50% 76%, rgba(255, 245, 245, 0.035), transparent 19%),
@@ -386,8 +388,13 @@ h1 {
 }
 
 @media (max-width: 720px) {
+  html,
+  body {
+    min-height: var(--app-height);
+  }
+
   .experience {
-    min-height: 100svh;
+    min-height: var(--app-height);
   }
 
   .rose-wrap {
@@ -397,12 +404,25 @@ h1 {
   }
 
   .wish {
-    bottom: clamp(82px, 13svh, 118px);
+    bottom: max(76px, calc(11svh + env(safe-area-inset-bottom, 0px)));
   }
 
   h1 {
     font-size: clamp(36px, 11.6vw, 52px);
     line-height: .98;
+  }
+
+  .start-button {
+    top: 50%;
+    bottom: auto;
+    width: min(64vw, 290px);
+    min-width: 0;
+    padding: 15px 18px;
+    transform: translate(-50%, -50%);
+  }
+
+  .is-started .start-button {
+    transform: translate(-50%, calc(-50% + 14px));
   }
 
   .mute-button {

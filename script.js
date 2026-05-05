@@ -3,6 +3,7 @@ const muteButton = document.querySelector(".mute-button");
 const birthdayMusic = document.querySelector("#birthday-music");
 const birthdayNote = document.querySelector(".birthday-note");
 const glowBlur = document.querySelector("#redGlow feGaussianBlur");
+const root = document.documentElement;
 
 let isMuted = false;
 
@@ -284,6 +285,27 @@ const drawStyles = [
   },
 ];
 
+function syncAppHeight() {
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  if (!viewportHeight) return;
+
+  root.style.setProperty("--app-height", `${Math.round(viewportHeight)}px`);
+}
+
+function requestAppFullscreen() {
+  if (document.fullscreenElement) return;
+
+  const fullscreenTarget = document.documentElement;
+  const requestFullscreen = fullscreenTarget.requestFullscreen
+    || fullscreenTarget.webkitRequestFullscreen;
+
+  if (!requestFullscreen) return;
+
+  Promise.resolve(requestFullscreen.call(fullscreenTarget)).catch(() => {
+    document.body.classList.add("fullscreen-blocked");
+  });
+}
+
 function pickRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
@@ -357,6 +379,7 @@ function startMusic() {
 }
 
 function startExperience() {
+  requestAppFullscreen();
   document.body.classList.add("is-started");
   startMusic();
 }
@@ -371,6 +394,11 @@ function toggleMute() {
     birthdayMusic.muted = isMuted;
   }
 }
+
+syncAppHeight();
+window.addEventListener("resize", syncAppHeight);
+window.visualViewport?.addEventListener("resize", syncAppHeight);
+window.visualViewport?.addEventListener("scroll", syncAppHeight);
 
 applyVariation();
 startButton.addEventListener("click", startExperience);
