@@ -7,6 +7,7 @@ const glowBlur = document.querySelector("#redGlow feGaussianBlur");
 let isMuted = false;
 
 const firstLoadKey = "hasSeenFirstRose";
+const messageIndexKey = "roseMessageIndex";
 const bestFirstPalette = "crimson-velvet";
 const bestFirstDrawStyle = "single-line";
 
@@ -297,6 +298,15 @@ function pickDifferent(items, storageKey, getId = (item) => item) {
   return selected;
 }
 
+function pickRotatingMessage() {
+  const rawIndex = Number.parseInt(sessionStorage.getItem(messageIndexKey) || "0", 10);
+  const index = Number.isFinite(rawIndex) && rawIndex >= 0 ? rawIndex % messages.length : 0;
+  const message = messages[index];
+  sessionStorage.setItem(messageIndexKey, String((index + 1) % messages.length));
+  sessionStorage.setItem("lastMessage", message);
+  return message;
+}
+
 function findByName(items, name) {
   return items.find((item) => item.name === name);
 }
@@ -309,7 +319,7 @@ function applyVariation() {
   const drawStyle = isFirstSessionLoad
     ? findByName(drawStyles, bestFirstDrawStyle) || drawStyles[0]
     : pickDifferent(drawStyles, "lastDrawStyle", (styleItem) => styleItem.name);
-  const message = pickDifferent(messages, "lastMessage");
+  const message = pickRotatingMessage();
 
   if (isFirstSessionLoad) {
     sessionStorage.setItem(firstLoadKey, "true");
