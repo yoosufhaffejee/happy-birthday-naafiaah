@@ -13,20 +13,20 @@ const bestFirstPalette = "crimson-velvet";
 const bestFirstDrawStyle = "single-line";
 
 const messages = [
-  "Hope your day comes with cake and zero stress.",
-  "A tiny rose, because confetti felt too loud.",
-  "Wishing you laughs, snacks, and main-character energy.",
   "I hope this makes you smile, even just a little.",
-  "Hope your day is full of good food and better vibes.",
-  "Another year wiser, cooler, and harder to impress.",
-  "May your birthday be low-stress and high-dessert.",
-  "A little birthday magic, because normal cards are boring.",
   "may every smile today be appointment-free.",
-  "Hope your birthday is binge-worthy in the best way.",
-  "May your perfume last long and your food arrive hot.",
+  "A tiny rose, because confetti felt too loud.",
+  "Hope your day comes with cake and zero stress.",
+  "Another year wiser, cooler, and harder to impress.",
   "Hope today feels like the first sip of really good coffee.",
-  "May your coffee be perfect and your day be even better.",
+  "Wishing you laughs, snacks, and main-character energy.",
+  "A little birthday magic, because normal cards are boring.",
+  "May your perfume last long and your food arrive hot.",
   "Hope today gives you a reason to pause and actually enjoy it.",
+  "May your birthday be low-stress and high-dessert.",
+  "May your coffee be perfect and your day be even better.",
+  "Hope your day is full of good food and better vibes.",
+  "Hope your birthday is binge-worthy in the best way.",
 ];
 
 const palettes = [
