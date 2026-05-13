@@ -310,10 +310,10 @@ function triggerTouchFeedback() {
   document.body.classList.add("is-pressing-start");
   window.setTimeout(() => {
     document.body.classList.remove("is-pressing-start");
-  }, 180);
+  }, 420);
 
   if (navigator.vibrate) {
-    navigator.vibrate(12);
+    navigator.vibrate([28, 32, 18, 46, 10]);
   }
 }
 

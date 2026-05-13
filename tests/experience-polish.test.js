@@ -27,8 +27,10 @@ assert.match(css, /\.legacy-browser\s+\.ambient-particles[\s\S]*display:\s*none/
 
 assert.match(modern, /function triggerTouchFeedback/, "Modern script should trigger touch feedback.");
 assert.match(modern, /navigator\.vibrate/, "Modern script should use the Vibration API when available.");
+assert.match(modern, /navigator\.vibrate\(\[28,\s*32,\s*18,\s*46,\s*10\]\)/, "Modern haptics should use a bloom-like vibration pattern.");
 assert.match(legacy, /function triggerTouchFeedback/, "Legacy script should trigger touch feedback.");
 assert.match(legacy, /navigator\.vibrate/, "Legacy script should use the Vibration API when available.");
+assert.match(legacy, /navigator\.vibrate\(\[28,\s*32,\s*18,\s*46,\s*10\]\)/, "Legacy haptics should use a bloom-like vibration pattern.");
 
 const modernMessages = extractMessages(modern);
 const legacyMessages = extractMessages(legacy);

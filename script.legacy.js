@@ -128,10 +128,10 @@
     setClass(document.body, "is-pressing-start", true);
     window.setTimeout(function () {
       setClass(document.body, "is-pressing-start", false);
-    }, 180);
+    }, 420);
 
     if (navigator.vibrate) {
-      navigator.vibrate(12);
+      navigator.vibrate([28, 32, 18, 46, 10]);
     }
   }
 
