@@ -49,6 +49,7 @@
 html,
 body {
   width: 100%;
+  height: 100vh;
   height: var(--app-height);
   min-height: 100%;
   margin: 0;
@@ -64,7 +65,9 @@ body {
 .experience {
   position: relative;
   width: 100vw;
+  height: 100vh;
   height: var(--app-height);
+  min-height: 560px;
   min-height: min(560px, var(--app-height));
   background:
     radial-gradient(circle at 50% 35%, var(--bg-red), transparent 27%),
@@ -114,6 +117,7 @@ body:not(.is-started) .experience::after {
   left: 50%;
   top: 45%;
   z-index: 2;
+  width: 72vmin;
   width: min(72vmin, 520px);
   transform: translate(var(--rose-x), var(--rose-y));
   filter:
@@ -205,8 +209,10 @@ body:not(.is-started) .experience::after {
 .wish {
   position: absolute;
   left: 50%;
+  bottom: 74px;
   bottom: clamp(74px, 11vh, 126px);
   z-index: 3;
+  width: 92vw;
   width: min(92vw, 900px);
   text-align: center;
   transform: translateX(-50%);
@@ -216,6 +222,7 @@ body:not(.is-started) .experience::after {
 
 h1 {
   margin: 0;
+  font-size: 42px;
   font-size: clamp(42px, 6.6vw, 88px);
   font-weight: 500;
   line-height: .96;
@@ -228,10 +235,13 @@ h1 {
 }
 
 .birthday-note {
+  width: 86vw;
   width: min(86vw, 520px);
+  margin: 14px auto 0;
   margin: clamp(14px, 2.5vh, 22px) auto 0;
   color: rgba(255, 247, 247, .68);
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
   font-size: clamp(12px, 2.6vw, 15px);
   font-weight: 400;
   line-height: 1.55;
@@ -264,6 +274,7 @@ h1 {
 
 .start-button {
   left: 50%;
+  bottom: 42px;
   bottom: clamp(42px, 8vh, 82px);
   min-width: 190px;
   padding: 15px 22px;
@@ -287,7 +298,9 @@ h1 {
 }
 
 .mute-button {
+  right: 16px;
   right: clamp(16px, 3vw, 28px);
+  top: 16px;
   top: clamp(16px, 3vw, 28px);
   padding: 10px 13px;
   border-radius: 999px;
@@ -399,15 +412,18 @@ h1 {
 
   .rose-wrap {
     top: var(--rose-mobile-top);
+    width: var(--rose-mobile-size);
     width: min(var(--rose-mobile-size), 540px);
     transform: translate(var(--rose-x), var(--rose-y));
   }
 
   .wish {
+    bottom: 76px;
     bottom: max(76px, calc(11svh + env(safe-area-inset-bottom, 0px)));
   }
 
   h1 {
+    font-size: 36px;
     font-size: clamp(36px, 11.6vw, 52px);
     line-height: .98;
   }
@@ -415,6 +431,7 @@ h1 {
   .start-button {
     top: 50%;
     bottom: auto;
+    width: 64vw;
     width: min(64vw, 290px);
     min-width: 0;
     padding: 15px 18px;
@@ -432,6 +449,33 @@ h1 {
     font-size: 9px;
     letter-spacing: .12em;
   }
+}
+
+.legacy-browser .experience {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.legacy-browser .rose-wrap {
+  top: 39%;
+  width: 118vmin;
+}
+
+.legacy-browser .wish {
+  bottom: 76px;
+}
+
+.legacy-browser .start-button {
+  top: 50%;
+  bottom: auto;
+  width: 64vw;
+  min-width: 0;
+  transform: translate(-50%, -50%);
+}
+
+.legacy-browser.is-started .start-button,
+.legacy-browser .is-started .start-button {
+  transform: translate(-50%, -36%);
 }
 
 @media (prefers-reduced-motion: reduce) {

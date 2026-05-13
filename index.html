@@ -15,7 +15,7 @@
 <body>
   <main class="experience" aria-label="Animated rose birthday wish">
     <div class="rose-wrap" aria-hidden="true">
-      <svg class="rose" viewBox="0 0 200 200" role="img">
+      <svg class="rose" viewBox="0 0 200 200" role="img" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
           <radialGradient id="petalFill" cx="45%" cy="22%" r="82%">
             <stop class="fill-stop-1" offset="0%" stop-color="#ff5a62"/>
@@ -72,10 +72,10 @@
         <g class="rose-art" filter="url(#softShadow)">
           <path class="prelude-line prelude-stem" pathLength="1" d="M57 180 C58 150 63 117 76 90 C81 80 88 72 96 66"/>
           <path class="prelude-line prelude-bloom" pathLength="1" d="M101 64 C110 47 128 43 140 54 C128 65 115 70 101 64Z M92 66 C76 47 83 25 106 22 C130 19 145 38 143 57"/>
-          <use class="rose-ghost" href="#roseShape" filter="url(#redGlow)"/>
-          <use class="rose-fill" href="#roseShape"/>
-          <use class="rose-line" href="#roseShape" filter="url(#redGlow)"/>
-          <use class="spark-trace" href="#roseShape" filter="url(#redGlow)"/>
+          <use class="rose-ghost" href="#roseShape" xlink:href="#roseShape" filter="url(#redGlow)"/>
+          <use class="rose-fill" href="#roseShape" xlink:href="#roseShape"/>
+          <use class="rose-line" href="#roseShape" xlink:href="#roseShape" filter="url(#redGlow)"/>
+          <use class="spark-trace" href="#roseShape" xlink:href="#roseShape" filter="url(#redGlow)"/>
         </g>
       </svg>
     </div>
@@ -99,6 +99,6 @@
 
     <audio id="birthday-music" src="./Roses_Background_Music_cropped.mp3" preload="auto" loop></audio>
   </main>
-  <script src="./script.js"></script>
+  <script src="./boot.js"></script>
 </body>
 </html>
