@@ -306,6 +306,17 @@ function requestAppFullscreen() {
   });
 }
 
+function triggerTouchFeedback() {
+  document.body.classList.add("is-pressing-start");
+  window.setTimeout(() => {
+    document.body.classList.remove("is-pressing-start");
+  }, 180);
+
+  if (navigator.vibrate) {
+    navigator.vibrate(12);
+  }
+}
+
 function pickRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
 }
@@ -379,6 +390,7 @@ function startMusic() {
 }
 
 function startExperience() {
+  triggerTouchFeedback();
   requestAppFullscreen();
   document.body.classList.add("is-started");
   startMusic();

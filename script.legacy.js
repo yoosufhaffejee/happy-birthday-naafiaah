@@ -9,7 +9,7 @@
 
   var messages = [
     "I hope this makes you smile, even just a little.",
-    "may every smile today be appointment-free.",
+    "May every smile today be appointment-free.",
     "A tiny rose, because confetti felt too loud.",
     "Hope your day comes with cake and zero stress.",
     "Another year wiser, cooler, and harder to impress.",
@@ -124,7 +124,19 @@
     }
   }
 
+  function triggerTouchFeedback() {
+    setClass(document.body, "is-pressing-start", true);
+    window.setTimeout(function () {
+      setClass(document.body, "is-pressing-start", false);
+    }, 180);
+
+    if (navigator.vibrate) {
+      navigator.vibrate(12);
+    }
+  }
+
   function startExperience() {
+    triggerTouchFeedback();
     setClass(document.body, "is-started", true);
     startMusic();
   }

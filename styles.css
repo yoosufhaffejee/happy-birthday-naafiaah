@@ -112,6 +112,47 @@ body:not(.is-started) .experience::after {
   animation: stars 24s linear infinite;
 }
 
+.ambient-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-particles span {
+  position: absolute;
+  left: var(--particle-x);
+  bottom: -8vh;
+  width: var(--particle-size);
+  height: var(--particle-size);
+  border-radius: 50%;
+  background: rgba(255, 98, 111, .72);
+  box-shadow:
+    0 0 8px rgba(229, 9, 34, .4),
+    0 0 18px rgba(229, 9, 34, .18);
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  animation: driftParticle var(--particle-duration) linear var(--particle-delay) infinite;
+}
+
+.ambient-particles span:nth-child(1) { --particle-x: 8%; --particle-size: 2px; --particle-duration: 18s; --particle-delay: -2s; }
+.ambient-particles span:nth-child(2) { --particle-x: 17%; --particle-size: 3px; --particle-duration: 24s; --particle-delay: -10s; }
+.ambient-particles span:nth-child(3) { --particle-x: 24%; --particle-size: 2px; --particle-duration: 20s; --particle-delay: -5s; }
+.ambient-particles span:nth-child(4) { --particle-x: 34%; --particle-size: 4px; --particle-duration: 27s; --particle-delay: -16s; }
+.ambient-particles span:nth-child(5) { --particle-x: 43%; --particle-size: 2px; --particle-duration: 21s; --particle-delay: -8s; }
+.ambient-particles span:nth-child(6) { --particle-x: 51%; --particle-size: 3px; --particle-duration: 25s; --particle-delay: -12s; }
+.ambient-particles span:nth-child(7) { --particle-x: 59%; --particle-size: 2px; --particle-duration: 19s; --particle-delay: -4s; }
+.ambient-particles span:nth-child(8) { --particle-x: 67%; --particle-size: 3px; --particle-duration: 29s; --particle-delay: -18s; }
+.ambient-particles span:nth-child(9) { --particle-x: 75%; --particle-size: 2px; --particle-duration: 22s; --particle-delay: -7s; }
+.ambient-particles span:nth-child(10) { --particle-x: 82%; --particle-size: 4px; --particle-duration: 26s; --particle-delay: -14s; }
+.ambient-particles span:nth-child(11) { --particle-x: 89%; --particle-size: 2px; --particle-duration: 20s; --particle-delay: -11s; }
+.ambient-particles span:nth-child(12) { --particle-x: 95%; --particle-size: 3px; --particle-duration: 24s; --particle-delay: -3s; }
+.ambient-particles span:nth-child(13) { --particle-x: 13%; --particle-size: 2px; --particle-duration: 28s; --particle-delay: -20s; }
+.ambient-particles span:nth-child(14) { --particle-x: 38%; --particle-size: 2px; --particle-duration: 23s; --particle-delay: -15s; }
+.ambient-particles span:nth-child(15) { --particle-x: 71%; --particle-size: 3px; --particle-duration: 30s; --particle-delay: -22s; }
+.ambient-particles span:nth-child(16) { --particle-x: 91%; --particle-size: 2px; --particle-duration: 26s; --particle-delay: -17s; }
+
 .rose-wrap {
   position: absolute;
   left: 50%;
@@ -125,7 +166,22 @@ body:not(.is-started) .experience::after {
     drop-shadow(0 0 25px var(--glow-large));
 }
 
+.rose-aura {
+  position: absolute;
+  inset: 13% 8% 4%;
+  z-index: -1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(229, 9, 34, .16), rgba(229, 9, 34, .045) 42%, transparent 68%);
+  filter: blur(22px);
+  opacity: .34;
+  transform: scale(.92);
+  pointer-events: none;
+}
+
 .rose {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: auto;
@@ -280,10 +336,39 @@ h1 {
   padding: 15px 22px;
   border-radius: 999px;
   font-size: 12px;
+  overflow: hidden;
   transform: translateX(-50%);
   box-shadow:
     0 0 22px var(--accent-glow),
     inset 0 0 18px rgba(255, 255, 255, .04);
+}
+
+.start-button::before,
+.start-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.start-button::before {
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, .16), transparent);
+  transform: translateX(-115%);
+  animation: buttonGlimmer 4.6s ease-in-out infinite;
+}
+
+.start-button::after {
+  opacity: .42;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .22),
+    inset 0 -12px 24px rgba(229, 9, 34, .08);
+}
+
+.start-button span {
+  position: relative;
+  z-index: 1;
 }
 
 .start-button:hover {
@@ -291,10 +376,39 @@ h1 {
   background: var(--button-bg-hover);
 }
 
+.is-pressing-start .start-button {
+  border-color: rgba(255, 126, 136, .8);
+  background: rgba(60, 0, 9, .58);
+  box-shadow:
+    0 0 30px rgba(229, 9, 34, .52),
+    inset 0 0 22px rgba(255, 255, 255, .08);
+}
+
 .is-started .start-button {
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, 12px);
+}
+
+.tap-ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: min(46vmin, 310px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 98, 111, .38);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.35);
+  box-shadow:
+    0 0 30px rgba(229, 9, 34, .28),
+    inset 0 0 28px rgba(229, 9, 34, .12);
+}
+
+.is-started .tap-ripple {
+  animation: tapRipple 1.25s ease-out forwards;
 }
 
 .mute-button {
@@ -400,6 +514,72 @@ h1 {
   }
 }
 
+@keyframes driftParticle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(.75);
+  }
+  14%, 72% {
+    opacity: .42;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(18px, -112vh, 0) scale(1.08);
+  }
+}
+
+@keyframes preBloomAura {
+  0%, 100% {
+    opacity: .16;
+    transform: scale(.88);
+  }
+  50% {
+    opacity: .32;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes ghostBreathe {
+  0%, 100% {
+    opacity: .012;
+  }
+  50% {
+    opacity: .034;
+  }
+}
+
+@keyframes buttonGlimmer {
+  0%, 62% {
+    transform: translateX(-115%);
+  }
+  82%, 100% {
+    transform: translateX(115%);
+  }
+}
+
+@keyframes tapRipple {
+  0% {
+    opacity: .62;
+    transform: translate(-50%, -50%) scale(.28);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.65);
+  }
+}
+
+.modern-browser body:not(.is-started) .rose-aura {
+  animation: preBloomAura 5.2s ease-in-out infinite;
+}
+
+.modern-browser body:not(.is-started) .rose-ghost {
+  display: block;
+  opacity: .018;
+  stroke-dashoffset: 0;
+  animation: ghostBreathe 4.8s ease-in-out infinite;
+  animation-play-state: running;
+}
+
 @media (max-width: 720px) {
   html,
   body {
@@ -456,6 +636,15 @@ h1 {
   min-height: 100vh;
 }
 
+.legacy-browser .ambient-particles,
+.legacy-browser .tap-ripple {
+  display: none;
+}
+
+.legacy-browser .rose-aura {
+  display: none;
+}
+
 .legacy-browser .rose-wrap {
   top: 39%;
   width: 96vmin;
@@ -510,6 +699,10 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ambient-particles span,
+  .rose-aura,
+  .tap-ripple,
+  .start-button::before,
   .rose-art,
   .experience::after {
     animation: none;
