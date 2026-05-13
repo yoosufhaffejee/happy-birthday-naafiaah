@@ -14,7 +14,7 @@ const bestFirstDrawStyle = "single-line";
 
 const messages = [
   "I hope this makes you smile, even just a little.",
-  "may every smile today be appointment-free.",
+  "May every smile today be appointment-free.",
   "A tiny rose, because confetti felt too loud.",
   "Hope your day comes with cake and zero stress.",
   "Another year wiser, cooler, and harder to impress.",
