@@ -49,3 +49,21 @@ assert.match(
   /\.legacy-browser\s+\.start-button\s*\{[\s\S]*top:\s*50%/,
   "Legacy CSS should keep the start button visible and centered."
 );
+
+assert.match(
+  css,
+  /\.legacy-browser\s+\.rose-wrap\s*\{[\s\S]*filter:\s*none/,
+  "Legacy CSS should remove expensive rose drop-shadow filters."
+);
+
+assert.match(
+  css,
+  /\.legacy-browser\s+\.rose-art\s*\{[\s\S]*animation:\s*none/,
+  "Legacy CSS should avoid continuous rose float animation."
+);
+
+assert.match(
+  css,
+  /\.legacy-browser\s+\.experience::after\s*\{[\s\S]*animation:\s*none/,
+  "Legacy CSS should avoid background star animation."
+);

@@ -458,7 +458,38 @@ h1 {
 
 .legacy-browser .rose-wrap {
   top: 39%;
-  width: 118vmin;
+  width: 96vmin;
+  filter: none;
+}
+
+.legacy-browser .rose-art {
+  animation: none;
+}
+
+.legacy-browser .experience::after {
+  opacity: .16;
+  animation: none;
+}
+
+.legacy-browser .rose-line,
+.legacy-browser .rose-ghost,
+.legacy-browser .spark-trace {
+  filter: none;
+}
+
+.legacy-browser .rose-fill {
+  animation-duration: 4s;
+}
+
+.legacy-browser .wish {
+  animation-duration: 2.4s;
+}
+
+.legacy-browser h1,
+.legacy-browser .birthday-note {
+  text-shadow:
+    0 0 12px rgba(255, 236, 236, .24),
+    0 8px 18px rgba(0, 0, 0, .72);
 }
 
 .legacy-browser .wish {
